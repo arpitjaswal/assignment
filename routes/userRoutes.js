@@ -1,20 +1,20 @@
 import express from "express";
 
-const router = express.Router();
+const userRoutes = express.Router();
 
 //route for creating a user
-router.post("/", userController.createUser);
+userRoutes.post("/", userController.createUser);
 
 //route for editing user details
-router.put("/:userID", userController.updateUser);
+userRoutes.put("/:userID", userController.updateUser);
 
 //route for deleting an existing user
-router.delete("/:userID", userController.deleteUser);
+userRoutes.delete("/:userID", userController.deleteUser);
 
 //route for logging in the user into the application
-router.post("/login", userController.loginUser);
+userRoutes.post("/login", userController.loginUser);
 
 //route for forgot password case
-router.post("/forgotPassword", userController.forgotPassword);
+userRoutes.post("/forgotPassword", userController.forgotPassword);
 
-export default router;
+export default userRoutes;
