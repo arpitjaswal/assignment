@@ -21,16 +21,16 @@ Content-Type: application/json
 }
 
 ### Update User
-PUT http://localhost:4567/users/user-id-here
+PUT http://localhost:4567/users/1
 Content-Type: application/json
 
 {
-  "username": "updated_arpitjaswal",
-  "password": "updated_password"
+  "username": "updatedarpitjaswal",
+  "password": "updatedpassword"
 }
 
 ### Delete User
-DELETE http://localhost:4567/users/user-id-here
+DELETE http://localhost:4567/users/1
 
 ### Forgot Password
 POST http://localhost:4567/users/forgotPassword

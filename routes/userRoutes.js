@@ -1,5 +1,5 @@
 import express from "express";
-
+import * as userController from "../controllers/userController.js";
 const userRoutes = express.Router();
 
 //route for creating a user

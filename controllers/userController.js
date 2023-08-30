@@ -1,4 +1,4 @@
-import user from "../models/user";
+import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv"
@@ -7,29 +7,39 @@ import nodemailer from "nodemailer";
 dotenv.config();
 
 //controller for creating an user
-const createUser = async (req,res)=>{
+const createUser = async (req, res) => {
     try {
-        const {username, password} = req.body;
-        const hashedPassword = await bcrypt.hash(password, 11);
-
-        const user = await user.create({username, password: hashedPassword});
-        res.json(user);
+      const { username, password, firstName, lastName, email, age } = req.body;
+      const hashedPassword = await bcrypt.hash(password, 11);
+  
+      const newUser = await User.create({
+        username,
+        password: hashedPassword,
+        firstName,
+        lastName,
+        email,
+        age
+      });
+  
+      res.json(newUser);
     } catch (error) {
-        res.status(500).json({error:error.message});
+      res.status(500).json({ error: error.message });
     }
-}
+  }
+
 //login controller
-const login = async (req,res)=>{
+const loginUser = async (req,res)=>{
     try {
         const {username, password} = req.body;
+        console.log(req.body);
         //try to find if there is an user with that username
-        const User = await user.findOne({username});
-        if(!User){
+        const foundUser = await User.findOne({username});
+        if(!foundUser){
             return res.status(401).json({ error: 'No such user present' });
         }
        
         const matchPassword = await bcrypt.compare(password, User.password);
-        if(!passwordMatch){
+        if(!matchPassword){
             return res.status(401).json({ error: 'Invalid password' });
         }
 
@@ -75,7 +85,7 @@ const updateUser = async (req, res) => {
       const { userID } = req.params;
       const { username, password } = req.body;
   
-      const updatedUser = await user.findByIdAndUpdate(userID, { username, password });
+      const updatedUser = await User.findByIdAndUpdate(userID, { username, password });
       if (!updatedUser) {
         return res.status(404).json({ error: "User not found" });
       }
@@ -90,7 +100,7 @@ const updateUser = async (req, res) => {
   const deleteUser = async (req,res)=>{
     try {
         const {userID} = req.params;
-        const userDeleted = await user.findByIdAndDelete(userID);
+        const userDeleted = await User.findByIdAndDelete(userID);
         if(!userDeleted){
             return res.status(404).json({ error: 'User not found' });
         }
@@ -101,4 +111,10 @@ const updateUser = async (req, res) => {
   }
   
   
-  
+  export {
+    createUser,
+    loginUser,
+    forgotPassword,
+    updateUser,
+    deleteUser
+  };
