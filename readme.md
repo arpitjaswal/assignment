@@ -35,10 +35,10 @@ npm i
 Create an env file with required fields, install dependencies, run using npm start
 ```
 
-## Run tests
+## Run local server
 
 ```sh
-npm run test
+npm start
 ```
 
 ## Author
