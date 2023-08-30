@@ -1,5 +1,4 @@
 import user from "../models/user";
-import user from "../models/user";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv"
@@ -29,12 +28,12 @@ const login = async (req,res)=>{
             return res.status(401).json({ error: 'No such user present' });
         }
        
-        const matchPassword = bcrypt.compare(password, User.password);
+        const matchPassword = await bcrypt.compare(password, User.password);
         if(!passwordMatch){
             return res.status(401).json({ error: 'Invalid password' });
         }
 
-        const jwtToken = jwt.sign({userID: user._id}, process.env.SECRETKEY, {expiresIn:"1h"});
+        const jwtToken = jwt.sign({userID: User._id}, process.env.SECRETKEY, {expiresIn:"1h"});
         res.json({jwtToken});
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -70,5 +69,36 @@ const forgotPassword = async(req,res)=>{
     }
 }
 
+//updating a user
+const updateUser = async (req, res) => {
+    try {
+      const { userID } = req.params;
+      const { username, password } = req.body;
+  
+      const updatedUser = await user.findByIdAndUpdate(userID, { username, password });
+      if (!updatedUser) {
+        return res.status(404).json({ error: "User not found" });
+      }
+  
+      res.json(updatedUser);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
 
-
+  //delete a user
+  const deleteUser = async (req,res)=>{
+    try {
+        const {userID} = req.params;
+        const userDeleted = await user.findByIdAndDelete(userID);
+        if(!userDeleted){
+            return res.status(404).json({ error: 'User not found' });
+        }
+        res.json({message: "User deleted successfully!"});
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+  }
+  
+  
+  
