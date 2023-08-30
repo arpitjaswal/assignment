@@ -10,13 +10,14 @@
 
 > The task was to create a basic NodeJS API with functionality to create new user, update existing user, delete existing user, login functionality, authorization, forgotPassword functionality&#34;
 
-## endpoints
- /users/ : creates a new user
- /users/:user ID : edits user details for the user ID
- /users/:userID :deletes user corresponding to the user ID
- /users/forgotPassword : retrieves forgotten password
- /users/login : user authentication
- 
+## Endpoints
+
+- `/users/`: Creates a new user
+- `/users/:userID`: Edits user details for the user ID
+- `/users/:userID`: Deletes the user corresponding to the user ID
+- `/users/forgotPassword`: Retrieves forgotten password
+- `/users/login`: User authentication
+
 
 ### 🏠 [Homepage](https://localhost:4567/)
 
