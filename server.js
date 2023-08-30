@@ -13,6 +13,12 @@ dotenv.config();
 app.use("/users", userRoutes);
 app.use(bodyParser.json());
 
+//dummy database connection
+mongoose.connect('mongodb://localhost/rudra', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //make server listen on a specific port
 const PORT = process.env.PORT || 1234;

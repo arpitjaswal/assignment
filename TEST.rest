@@ -1,0 +1,41 @@
+### Create User
+POST http://localhost:4567/users
+Content-Type: application/json
+
+{
+  "username": "arpitjaswal",
+  "password": "password",
+  "firstName": "Arpit",
+  "lastName": "Jaswal",
+  "email": "xyz@example.com",
+  "age": 23
+}
+
+### Log In
+POST http://localhost:4567/users/login
+Content-Type: application/json
+
+{
+  "username": "arpitjaswal",
+  "password": "password"
+}
+
+### Update User
+PUT http://localhost:4567/users/user-id-here
+Content-Type: application/json
+
+{
+  "username": "updated_arpitjaswal",
+  "password": "updated_password"
+}
+
+### Delete User
+DELETE http://localhost:4567/users/user-id-here
+
+### Forgot Password
+POST http://localhost:4567/users/forgotPassword
+Content-Type: application/json
+
+{
+  "email": "xyz@example.com"
+}
