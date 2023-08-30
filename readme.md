@@ -30,9 +30,19 @@ npm i
 ```
 
 ## Usage
-
-```sh
 Create an env file with required fields, install dependencies, run using npm start
+
+## Create an Environment File
+
+Create a `.env` file in the root directory of the project and add the following content:
+
+```plaintext
+PORT=4567
+MODE=development
+SECRETKEY="RudraInnovative"
+email="xyz@gmail.com"
+password="Password"
+
 ```
 
 ## Run local server
