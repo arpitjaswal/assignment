@@ -1,0 +1,11 @@
+Create a REST API using NodeJS with the following features
+
+1. Authentication (using username and password)
+2. The code should have create, edit, update and delete functionality for users.
+3. Forget password api
+
+Notes-
+
+1. Code should be well documented
+2. Once done, push it to a public repo on GitHub or GitLab and provide us the URL to check.
+3. Steps to deploy in the readme file.
